@@ -35,18 +35,22 @@
         </div>
       </header>
 
+      <main role="main" class="inner cover">
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <main role="main" class="inner cover">
         <h1 class="cover-heading">Marie & Jon</h1>
         <p class="lead">13/06/2020</p>
-      </main>
+        <p id=decompte class="lead">&nbsp;</p>
 </div>
-  <div class="tab-pane" id="nav-pratique" role="tabpanel" aria-labelledby="nav-pratique-tab">pratique</div>
+  <div class="tab-pane" id="nav-pratique" role="tabpanel" aria-labelledby="nav-pratique-tab">
+        <h1 class="cover-heading">Marie & Jon</h1>
+        <p class="lead">13/06/2020</p>
+</div>
   <div class="tab-pane" id="nav-logement" role="tabpanel" aria-labelledby="nav-logement-tab">logement</div>
   <div class="tab-pane" id="nav-acces" role="tabpanel" aria-labelledby="nav-acces-tab">acces</div>
   <div class="tab-pane" id="nav-liste" role="tabpanel" aria-labelledby="nav-liste-tab">liste</div>
 </div>
+      </main>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
@@ -63,5 +67,30 @@
     <script src="jquery-3.2.1.slim.min.js"></script>
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
+    <script>
+function pad2(n) {
+  return (n < 10 ? "0" : "" ) + n;
+}
+function setDecompte(decompte) {
+  var date_debut = new Date("2020-06-13T17:00:00+02:00");
+  //var date_debut = new Date("2020-03-03T18:00:00+01:00");
+  var difference = date_debut - Date.now();
+  var res = "";
+  var tmp = Math.floor(difference/1000);
+  res = pad2(tmp%60) + "s " + res;
+  var tmp = Math.floor(tmp/60);
+  res = pad2(tmp%60) + "m " + res;
+  var tmp = Math.floor(tmp/60);
+  res = pad2(tmp%24) + "h " + res;
+  var tmp = Math.floor(tmp/24);
+  res = pad2(tmp) + "j " + res;
+  decompte.innerHTML=res;
+}
+var decompte=document.getElementById("decompte");
+  setDecompte(decompte);
+  setInterval(function() {
+  setDecompte(decompte);
+}, 1000);
+    </script>
   </body>
 </html>
