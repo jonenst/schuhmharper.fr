@@ -24,19 +24,29 @@
       <header class="masthead mb-auto">
         <div class="inner">
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#"><svg style="margin: 2px 0px -2px 0px" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1 0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69 8 2.5l5.19 5.19L12 14z"/></svg></a>
-            <a class="nav-link" href="#">Pratique</a>
-            <a class="nav-link" href="#">Logement</a>
-            <a class="nav-link" href="#">Accès</a>
-            <a class="nav-link" href="#">Liste</a>
+            <div class="nav" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><svg style="margin: 2px 0px -2px 0px" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1 0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69 8 2.5l5.19 5.19L12 14z"/></svg></a>
+              <a class="nav-item nav-link" id="nav-pratique-tab" data-toggle="tab" href="#nav-pratique" role="tab" aria-controls="nav-pratique" aria-selected="false">Pratique</a>
+              <a class="nav-item nav-link" id="nav-logement-tab" data-toggle="tab" href="#nav-logement" role="tab" aria-controls="nav-logement" aria-selected="false">Logement</a>
+              <a class="nav-item nav-link" id="nav-acces-tab" data-toggle="tab" href="#nav-acces" role="tab" aria-controls="nav-acces" aria-selected="false">Accès</a>
+              <a class="nav-item nav-link" id="nav-liste-tab" data-toggle="tab" href="#nav-liste" role="tab" aria-controls="nav-liste" aria-selected="false">Liste</a>
+            </div>
           </nav>
         </div>
       </header>
 
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Marie & Jon</h1>
         <p class="lead">13/06/2020</p>
       </main>
+</div>
+  <div class="tab-pane fade" id="nav-pratique" role="tabpanel" aria-labelledby="nav-pratique-tab">pratique</div>
+  <div class="tab-pane fade" id="nav-logement" role="tabpanel" aria-labelledby="nav-logement-tab">logement</div>
+  <div class="tab-pane fade" id="nav-acces" role="tabpanel" aria-labelledby="nav-acces-tab">acces</div>
+  <div class="tab-pane fade" id="nav-liste" role="tabpanel" aria-labelledby="nav-liste-tab">liste</div>
+</div>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
@@ -49,5 +59,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="jquery-3.2.1.slim.min.js"></script>
+    <script src="jquery-3.2.1.slim.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
   </body>
 </html>
