@@ -89,10 +89,37 @@ function setDecompte(decompte) {
   decompte.innerHTML=res;
 }
 var decompte=document.getElementById("decompte");
-  setDecompte(decompte);
-  setInterval(function() {
-  setDecompte(decompte);
-}, 1000);
+var timer_interval_id = -1;
+var timer_set = false;
+$(document).ready(function() {
+  if (location.hash && location.hash != "#nav-home") {
+    $('#nav-tab a[href="'+location.hash+'"]').tab("show");
+  } else {
+    location.hash = "#nav-home";
+    setDecompte(decompte);
+    timer_interval_id = setInterval(function() {
+      setDecompte(decompte);
+    }, 1000);
+    timer_set = true;
+  }
+
+  $('a[data-toggle="tab"]').on("click", function() {
+    var hash =  $(this).attr("href");
+    if (hash == "#nav-home" && !timer_set) {
+      setDecompte(decompte);
+      timer_interval_id = setInterval(function() {
+        setDecompte(decompte);
+      }, 1000);
+      timer_set = true;
+    } else if (hash != "#nav-home" && timer_set) {
+        clearInterval(timer_interval_id);
+        timer_set = false;
+    }
+    location.hash = hash;
+  });
+});
     </script>
+<script>
+</script>
   </body>
 </html>
