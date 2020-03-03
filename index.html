@@ -95,11 +95,14 @@ function setDecompte(decompte) {
 var decompte=document.getElementById("decompte");
 var timer_interval_id = -1;
 var timer_set = false;
+if (location.hash == "#nav-home") {
+  location.hash = "";
+}
 $(document).ready(function() {
-  if (location.hash && location.hash != "#nav-home") {
+  if (location.hash) {
     $('#nav-tab a[href="'+location.hash+'"]').tab("show");
   } else {
-    location.hash = "#nav-home";
+    location.hash = "";
     setDecompte(decompte);
     timer_interval_id = setInterval(function() {
       setDecompte(decompte);
@@ -119,8 +122,14 @@ $(document).ready(function() {
         clearInterval(timer_interval_id);
         timer_set = false;
     }
-    if (location.hash != hash) {
-      location.hash = hash;
+    if (hash == "#nav-home") {
+      if (location.hash != "#") {
+        location.hash = "";
+      }
+    } else {
+      if (location.hash != hash) {
+        location.hash = hash;
+      }
     }
   });
 });
