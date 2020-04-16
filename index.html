@@ -32,7 +32,6 @@
               <a class="nav-item nav-link" id="nav-acces-tab" data-toggle="tab" href="#nav-acces" role="tab" aria-controls="nav-acces" aria-selected="false">Accès</a>
               <a class="nav-item nav-link" id="nav-liste-tab" data-toggle="tab" href="#nav-liste" role="tab" aria-controls="nav-liste" aria-selected="false">Liste</a>
               <a class="nav-item nav-link" id="nav-rsvp-tab" data-toggle="tab" href="#nav-rsvp" role="tab" aria-controls="nav-rsvp" aria-selected="false">RSVP</a>
-              <a class="nav-item nav-link" id="nav-covid19-tab" data-toggle="tab" href="#nav-covid19" role="tab" aria-controls="nav-covid19" aria-selected="false">COVID-19</a>
             </div>
           </nav>
         </div>
@@ -45,7 +44,8 @@
         <p class="lead">13 juin 2020, 17h</p>
         <p class="lead">La Grange de Montmartre<br/>
 				60810 Barbery, Oise</p>
-        <p id=decompte class="lead">&nbsp;</p>
+        <p id=decompte class="lead">??j ??h ??m ??s</p>
+        <p>À cause de la pandémie de Covid-19, nous attendons jusqu'à fin avril et la publication des décrets décrivant le déconfinement pour décider de maintenir ou reporter notre marriage. Nous vous tiendrons informés en mettant à jour ce message.</p>
 </div>
   <div class="tab-pane" id="nav-pratique" role="tabpanel" aria-labelledby="nav-pratique-tab">
         <h1 class="cover-heading">Festivités</h1>
@@ -80,10 +80,6 @@
         <p>Marie&nbsp;: marieschuh@free.fr, WhatsApp,<br/>63b&nbsp;rue&nbsp;de&nbsp;la&nbsp;république, 93200&nbsp;Saint&#8209;Denis</p>
 	  <p>Evelyne&nbsp;: evelyne@pau.fr, 0660849441, <br/>6&nbsp;rue&nbsp;d'Andoins, 64000&nbsp;Pau
         <p>Herve &amp; Nathalie&nbsp;: 11&nbsp;rue&nbsp;de&nbsp;la&nbsp;machine, 60500&nbsp;Chantilly</p>
-  </div>
-  <div class="tab-pane" id="nav-covid19" role="tabpanel" aria-labelledby="nav-covid19-tab">
-        <h1 class="cover-heading">COVID-19</h1>
-	<p>Les pandémie actuelle de COVID-19 pose beaucoup de questions. Nous ne savons pas encore comment elle affectera notre mariage. Nous vous tiendrons au courant dès que nous aurons plus d'informations !</p>
   </div>
 </div>
       </main>
@@ -126,7 +122,8 @@ function setDecompte(decompte) {
 }
 var decompte=document.getElementById("decompte");
 var timer_interval_id = -1;
-var timer_set = false;
+var timer_set = true; //set false to reenable
+
 if (location.hash == "#nav-home") {
   location.hash = "";
 }
@@ -135,11 +132,13 @@ $(document).ready(function() {
     $('#nav-tab a[href="'+location.hash+'"]').tab("show");
   } else {
     location.hash = "";
-    setDecompte(decompte);
-    timer_interval_id = setInterval(function() {
-      setDecompte(decompte);
-    }, 1000);
-    timer_set = true;
+    if (!timer_set) {
+        setDecompte(decompte);
+        timer_interval_id = setInterval(function() {
+          setDecompte(decompte);
+        }, 1000);
+        timer_set = true;
+    }
   }
 
   $('a[data-toggle="tab"]').on("click", function() {
@@ -152,7 +151,7 @@ $(document).ready(function() {
       timer_set = true;
     } else if (hash != "#nav-home" && timer_set) {
         clearInterval(timer_interval_id);
-        timer_set = false;
+        timer_set = true; //set false to reenable
     }
     if (hash == "#nav-home") {
       if (location.hash != "#") {
