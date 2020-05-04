@@ -41,11 +41,11 @@
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <h1 class="cover-heading">Marie & Jon</h1>
-        <p class="lead">?? ???? 202?, 17h</p>
+        <p class="lead">13 mars 2021, 17h</p>
         <p class="lead">La Grange de Montmartre<br/>
 				60810 Barbery, Oise</p>
-        <p id=decompte class="lead">??j ??h ??m ??s</p>
-        <p>Du fait de la pandémie de Covid-19, la date de notre mariage devient incertaine. Nous attendons la publication des décrets sur le déconfinement pour en savoir plus. Et nous vous tiendrons informés ici même et au plus tôt de ce qu'il en est (ne vous inquiétez pas, si jamais ne n'est pas juin, on a déjà un plan B ;-) )</p>
+        <p id="decompte" class="lead"></p>
+        <p>Vous avez bien lu, la pandémie de Covid-19 nous a contraint de tranformer ce mariage d'été en mariage d'hiver ;-)</p>
 </div>
   <div class="tab-pane" id="nav-pratique" role="tabpanel" aria-labelledby="nav-pratique-tab">
         <h1 class="cover-heading">Festivités</h1>
@@ -106,8 +106,7 @@ function pad2(n) {
   return (n < 10 ? "0" : "" ) + n;
 }
 function setDecompte(decompte) {
-  var date_debut = new Date("2020-06-13T17:00:00+02:00");
-  //var date_debut = new Date("2020-03-03T18:00:00+01:00");
+  var date_debut = new Date("2021-03-13T17:00:00+01:00");
   var difference = date_debut - Date.now();
   var res = "";
   var tmp = Math.floor(difference/1000);
@@ -122,7 +121,7 @@ function setDecompte(decompte) {
 }
 var decompte=document.getElementById("decompte");
 var timer_interval_id = -1;
-var timer_set = true; //set false to reenable
+var timer_set = false; //set true to disable
 
 if (location.hash == "#nav-home") {
   location.hash = "";
@@ -151,7 +150,7 @@ $(document).ready(function() {
       timer_set = true;
     } else if (hash != "#nav-home" && timer_set) {
         clearInterval(timer_interval_id);
-        timer_set = true; //set false to reenable
+        timer_set = false; //set true to disable
     }
     if (hash == "#nav-home") {
       if (location.hash != "#") {
