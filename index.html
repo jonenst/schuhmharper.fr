@@ -44,8 +44,7 @@
         <p class="lead">07 août 2021, 17h</p>
         <p class="lead">La Grange de Montmartre<br/>
 				60810 Barbery, Oise</p>
-        <p id="decompte" class="lead"></p>
-        <p>Troisième tentative, on y croit ! Rendez-vous cet été ;-)</p>
+        <p class="lead">Just Married !</p>
 </div>
   <div class="tab-pane" id="nav-pratique" role="tabpanel" aria-labelledby="nav-pratique-tab">
         <h1 class="cover-heading">Festivités</h1>
@@ -102,26 +101,6 @@
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script>
-function pad2(n) {
-  return (n < 10 ? "0" : "" ) + n;
-}
-function setDecompte(decompte) {
-  var date_debut = new Date("2021-08-07T17:00:00+02:00");
-  var difference = date_debut - Date.now();
-  var res = "";
-  var tmp = Math.floor(difference/1000);
-  res = pad2(tmp%60) + "s " + res;
-  var tmp = Math.floor(tmp/60);
-  res = pad2(tmp%60) + "m " + res;
-  var tmp = Math.floor(tmp/60);
-  res = pad2(tmp%24) + "h " + res;
-  var tmp = Math.floor(tmp/24);
-  res = pad2(tmp) + "j " + res;
-  decompte.innerHTML=res;
-}
-var decompte=document.getElementById("decompte");
-var timer_interval_id = -1;
-var timer_set = false; //set true to disable
 
 if (location.hash == "#nav-home") {
   location.hash = "";
@@ -131,40 +110,8 @@ $(document).ready(function() {
     $('#nav-tab a[href="'+location.hash+'"]').tab("show");
   } else {
     location.hash = "";
-    if (!timer_set) {
-        setDecompte(decompte);
-        timer_interval_id = setInterval(function() {
-          setDecompte(decompte);
-        }, 1000);
-        timer_set = true;
-    }
   }
-
-  $('a[data-toggle="tab"]').on("click", function() {
-    var hash =  $(this).attr("href");
-    if (hash == "#nav-home" && !timer_set) {
-      setDecompte(decompte);
-      timer_interval_id = setInterval(function() {
-        setDecompte(decompte);
-      }, 1000);
-      timer_set = true;
-    } else if (hash != "#nav-home" && timer_set) {
-        clearInterval(timer_interval_id);
-        timer_set = false; //set true to disable
-    }
-    if (hash == "#nav-home") {
-      if (location.hash != "#") {
-        location.hash = "";
-      }
-    } else {
-      if (location.hash != hash) {
-        location.hash = hash;
-      }
-    }
-  });
 });
     </script>
-<script>
-</script>
   </body>
 </html>
