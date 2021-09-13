@@ -632,12 +632,15 @@
     <script src="jquery.nanogallery2.min.js"></script>
 
     <script>
+var hash = location.hash;
 
-if (location.hash == "#nav-home") {
-  location.hash = "";
+if (hash == "#nav-home") {
+  hash = "";
 }
 $(document).ready(function() {
-  if (location.hash) {
+    console.log("coucou3", hash);
+  if (hash) {
+    location.hash = hash;
     $('#nav-tab a[href="'+location.hash+'"]').tab("show");
   } else {
     location.hash = "";
